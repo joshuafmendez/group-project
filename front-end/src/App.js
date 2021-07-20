@@ -1,4 +1,4 @@
-import { ReactRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 //Components
 import NavBar from "./components/NavBar.js";
