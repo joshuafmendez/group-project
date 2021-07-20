@@ -15,6 +15,10 @@ https://github.com/joshuafmendez/group-project/
 https://trello.com/b/439hwX07/pern-group-project
 ```
 
+```
+https://docs.google.com/document/d/1S1Olv3dqzEtUh1vDxJtJnY4fJhH0qL23tw2Pt00BtyE/edit
+```
+
 # PERN Final Project Template
 
 - select `use this template`
