@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Four0Four() {
+const Four0Four = () => {
     return (
         <div>
-            
+            <h1>Oops! Page Not Found!</h1>
         </div>
     )
 }

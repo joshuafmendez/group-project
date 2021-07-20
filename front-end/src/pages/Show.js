@@ -1,9 +1,10 @@
-import React from 'react'
+import ProductListItem from "../components/ProductListItem"
 
-function Show() {
+
+const Show = () => {
     return (
         <div>
-            
+            <ProductListItem />
         </div>
     )
 }

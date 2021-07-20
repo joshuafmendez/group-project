@@ -1,11 +1,12 @@
-import React from 'react'
+import EditProductForm from "../components/EditProductForm"
 
-function Edit() {
+const Edit = () => {
     return (
         <div>
-            
+            <EditProductForm />
         </div>
     )
 }
 
 export default Edit
+

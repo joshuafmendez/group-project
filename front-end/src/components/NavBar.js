@@ -1,9 +1,14 @@
+import { NavLink } from 'react-router-dom'
 
 const NavBar = () => {
     return (
-        <div>
-            
-        </div>
+        <section>
+            <nav>
+                <NavLink to="">Home</NavLink>
+                <NavLink to="">Products</NavLink>
+                <NavLink to="">New Products</NavLink>
+            </nav>
+        </section>
     )
 }
 

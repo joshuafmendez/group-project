@@ -1,9 +1,10 @@
-import React from 'react'
+import NewProductForm from "../components/NewProductForm"
 
-function New() {
+
+const New = () => {
     return (
         <div>
-            
+            <NewProductForm />
         </div>
     )
 }
