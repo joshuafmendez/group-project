@@ -1,3 +1,9 @@
+# Important Links
+https://unruffled-tereshkova-ccd7eb.netlify.app/
+https://desolate-fortress-43961.herokuapp.com/
+https://github.com/joshuafmendez/group-project/
+https://trello.com/b/439hwX07/pern-group-project
+
 # PERN Final Project Template
 
 - select `use this template`
