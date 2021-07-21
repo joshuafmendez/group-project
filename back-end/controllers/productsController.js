@@ -1,35 +1,68 @@
 const products = require("express").Router();
+const {
+  getAllProducts,
+  getProduct,
+  createProduct,
+  deleteProduct,
+  editProduct,
+} = require("../queries/products");
 
-// const {} = require("../queries/products");
-
-products.get("/", (req, res) => {
+// get all products
+products.get("/", async (req, res) => {
   try {
-    res.json({status: "success", payload: "Get All"});
-  } catch (err) {res.json({status: "success", payload: err})}
+    const allProducts = await getAllProducts();
+    res.json({ status: "success", payload: allProducts });
+  } catch (err) {
+    res.status(404).json({ status: "failure", payload: err });
+  }
 });
 
-products.get("/:id", (req, res) => {
+// get product by id
+products.get("/:id", async (req, res) => {
+  const { id } = req.params;
   try {
-    res.json({status: "success", payload: "Get by ID"});
-  } catch (err) {res.json({status: "success", payload: err})}
+    const product = await getProduct(id);
+    if (product["id"]) {
+      res.json({ status: "success", payload: product });
+    } else {
+      throw `Sorry there is no emotion with the id of ${id}`;
+    }
+  } catch (err) {
+    res.status(404).json({ status: "failure", payload: err });
+  }
 });
 
-products.post("/", (req, res) => {
+// create a product
+products.post("/", async (req, res) => {
   try {
-    res.json({status: "success", payload: "Post"});
-  } catch (err) {res.json({status: "success", payload: err})}
+    const product = await createProduct(req.body);
+    res.json({ status: "success", payload: product });
+  } catch (err) {
+    res.status(404).json({ status: "failure", payload: err });
+  }
 });
 
-products.delete("/:id", (req, res) => {
+// delete product
+products.delete("/:id", async (req, res) => {
+  const { id } = req.params;
   try {
-    res.json({status: "success", payload: "delete"});
-  } catch (err) {res.json({status: "success", payload: err})}
+    const deletedProduct = await deleteProduct(id);
+    res.json({ status: "success", payload: deletedProduct });
+  } catch (err) {
+    res.status(404).json({ status: "failure", payload: err });
+  }
 });
 
-products.put("/:id", (req, res) => {
+// edit product
+products.put("/:id", async (req, res) => {
+  const { body, params } = req;
+  const { id } = params;
   try {
-    res.json({status: "success", payload: "Edit"});
-  } catch (err) {res.json({status: "success", payload: err})}
+    const editedProduct = await editProduct(id, body);
+    res.json({ status: "success", payload: editedProduct });
+  } catch (err) {
+    res.status(404).json({ status: "failure", payload: err });
+  }
 });
 
 module.exports = products;
