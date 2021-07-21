@@ -12,6 +12,7 @@ const ProductList = () => {
         const getProducts = async () => {
             try {
                 const res = await axios.get(`${API}/products`);
+                debugger
                 setProducts(res.data.payload);
             } catch (error) {
                 console.log(error);
