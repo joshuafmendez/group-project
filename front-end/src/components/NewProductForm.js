@@ -1,40 +1,45 @@
 import axios from "axios";
 import { useState } from "react";
 import { apiURL } from "../util/apiURL";
-const API = apiURL()
+import { useHistory } from "react-router-dom";
 
-const NewProductForm = ({ history }) => {
+const API = apiURL();
+
+const NewProductForm = () => {
+    const history = useHistory()
+
+    const addProduct = async (newProd) => {
+      try {
+        await axios.post(`${API}/products`, newProd);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
   const [product, setProduct] = useState({
     name: "",
     price: 0,
     description: "",
   });
 
+
   const handleChange = (e) => {
     setProduct({ ...product, [e.target.id]: e.target.value });
   };
 
-  const addProduct = async (newProd) => {
-    try{
-        let res = await axios.post(`${API}/products`, newProd);
-        setProduct((prevProd) => [...prevProd, res.data])
-    } catch(err) {
-        console.log(err);
-    }
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addProduct()
+    addProduct(product);
+    history.push('/products')
   };
+
 
   return (
     <div>
       <h1>Add A New Emotion!</h1>
       <section className="form">
-
         <form onSubmit={handleSubmit}>
-
           <label htmlFor="name">Name:</label>
           <input
             id="name"
@@ -44,19 +49,21 @@ const NewProductForm = ({ history }) => {
           />
 
           <label htmlFor="price">Price:</label>
-          <input id='price'
-          value={product.price}
-          required
-          onChange={handleChange}
+          <input
+            id="price"
+            value={product.price}
+            required
+            onChange={handleChange}
           />
 
-        <label htmlFor='description'>Description:</label>
-        <input id='description' 
+          <label htmlFor="description">Description:</label>
+          <input
+            id="description"
             value={product.description}
             onChange={handleChange}
-            />
-            <button type="submit" className='submitButton'>Submit</button>
-
+          />
+          <input type="submit" className="submitButton" value='submit' />
+           
         </form>
       </section>
     </div>
