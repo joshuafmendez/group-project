@@ -27,16 +27,16 @@ function App() {
           <Route exact path="/products">
             <Index />
           </Route>
-          <Route exact path="/:id">
-            <Show />
-          </Route>
-          <Route to="/products/new">
+          <Route path="/products/new">
             <New />
           </Route>
-          <Route to="/:id/edit">
+          <Route exact path="/products/:id">
+            <Show />
+          </Route>
+          <Route path="/:id/edit">
             <Edit />
           </Route>
-          <Route to="/*">
+          <Route path="/*">
             <Four0Four />
           </Route>
         </Switch>

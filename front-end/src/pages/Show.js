@@ -1,10 +1,10 @@
-import ProductListItem from "../components/ProductListItem"
+import ProductDetail from "../components/ProductDetail";
 
 
 const Show = () => {
     return (
         <div>
-            <ProductListItem />
+            <ProductDetail />
         </div>
     )
 }
