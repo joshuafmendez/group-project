@@ -21,22 +21,22 @@ function App() {
       <Router>
         <NavBar />
         <Switch>
-          <Route exact to="/">
+          <Route exact path="/">
             <Home />
           </Route>
-          <Route exact to="/products">
+          <Route exact path="/products">
             <Index />
           </Route>
-          <Route exact to="/:id">
+          <Route exact path="/:id">
             <Show />
           </Route>
-          <Route to="/products/new">
+          <Route path="/products/new">
             <New />
           </Route>
-          <Route to="/:id/edit">
+          <Route path="/:id/edit">
             <Edit />
           </Route>
-          <Route to="/*">
+          <Route path="/*">
             <Four0Four />
           </Route>
         </Switch>
