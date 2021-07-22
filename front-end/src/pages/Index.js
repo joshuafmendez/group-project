@@ -4,6 +4,7 @@ import ProductList from '../components/ProductList'
 const Index = () => {
     return (
         <div>
+            <h1>Emo Products!</h1>
             <ProductList />
         </div>
     )

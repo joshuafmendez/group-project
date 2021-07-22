@@ -11,8 +11,8 @@ import New from "./pages/New.js";
 import Edit from "./pages/Edit.js";
 import Four0Four from "./pages/Four0Four.js";
 
-import { apiURL } from "./util/apiURL.js";
-const API = apiURL();
+// import { apiURL } from "./util/apiURL.js";
+// const API = apiURL();
 
 function App() {
 
@@ -27,11 +27,11 @@ function App() {
           <Route exact path="/products">
             <Index />
           </Route>
-          <Route exact path="/:id">
-            <Show />
-          </Route>
           <Route path="/products/new">
             <New />
+          </Route>
+          <Route exact path="/products/:id">
+            <Show />
           </Route>
           <Route path="/:id/edit">
             <Edit />
