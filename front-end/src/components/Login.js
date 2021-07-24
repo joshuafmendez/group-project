@@ -16,8 +16,7 @@ const Login = ({ setAuth }) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const loginUser = async () => {
     try {
       const body = { email, password };
       const { data } = await axios.post(`${API}/users/login`, body);
@@ -25,11 +24,16 @@ const Login = ({ setAuth }) => {
         localStorage.setItem("token", data.payload.token);
         setAuth(true);
       } else {
-        setAuth(true);
+        setAuth(false);
       }
     } catch (error) {
       console.error(error.message);
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    loginUser();
   };
 
   return (

@@ -27,7 +27,7 @@ const Register = ({ setAuth }) => {
         localStorage.setItem("token", data.payload.token);
         setAuth(true);
       } else {
-        setAuth(true);
+        setAuth(false);
       }
     } catch (error) {
       console.error(error.message);
