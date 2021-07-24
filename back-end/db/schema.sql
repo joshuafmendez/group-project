@@ -1,4 +1,4 @@
-DROP TABLE if EXISTS emotions;
+DROP TABLE IF EXISTS emotions;
 
 CREATE TABLE emotions (
     id SERIAL PRIMARY KEY, 

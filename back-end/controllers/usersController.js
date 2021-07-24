@@ -11,7 +11,7 @@ const {
 } = require("../queries/users");
 
 // get all users
-users.get("/", authorization, async (req, res) => {
+users.get("/", async (req, res) => {
   try {
     const allUsers = await getAllUsers();
     res.json({ status: "success", payload: allUsers });
@@ -21,7 +21,7 @@ users.get("/", authorization, async (req, res) => {
 });
 
 // get user by id
-users.get("/user/:id", authorization, async (req, res) => {
+users.get("/user/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const user = await getUser(id);
@@ -36,7 +36,7 @@ users.get("/user/:id", authorization, async (req, res) => {
 });
 
 // delete user
-users.delete("/user/:id", authorization, async (req, res) => {
+users.delete("/user/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const deletedUser = await deleteUser(id);
@@ -47,7 +47,7 @@ users.delete("/user/:id", authorization, async (req, res) => {
 });
 
 // edit user
-users.put("/user/:id", authorization, async (req, res) => {
+users.put("/user/:id", async (req, res) => {
   const { body, params } = req;
   const { id } = params;
   try {
@@ -83,10 +83,10 @@ users.post("/login", validation, async (req, res) => {
 });
 
 // testing authorization
-users.get("/is-verified", authorization, async (req, res) => {
+users.post("/is-verified", authorization, async (req, res) => {
   try {
     res.json(true);
-  } catch (error) {
+  } catch (err) {
     res.status(404).json({ status: "failure", payload: err });
   }
 });

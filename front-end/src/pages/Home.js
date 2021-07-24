@@ -1,11 +1,13 @@
-import React from 'react'
+import React from "react";
+import Login from "../components/Login";
 
-const Home = () => {
-    return (
-        <div>
-            <h1>WELCOME TO THE ONE STOP EMO SHOP!</h1>
-        </div>
-    )
-}
+const Home = ({ setAuth }) => {
+  return (
+    <div>
+      <h1>WELCOME TO THE ONE STOP EMO SHOP!</h1>
+      <Login setAuth={setAuth} />
+    </div>
+  );
+};
 
-export default Home
+export default Home;
