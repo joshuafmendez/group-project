@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 //Components
 import NavBar from "./components/NavBar.js";
+import ShoppingCart from "./components/ShoppingCart.js";
 
 //Pages
 import Home from "./pages/Home.js";
@@ -39,6 +40,7 @@ function App() {
           <Route path="/*">
             <Four0Four />
           </Route>
+          <ShoppingCart />
         </Switch>
       </Router>
     </div>
