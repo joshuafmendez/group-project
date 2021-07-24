@@ -8,12 +8,13 @@ const authorization = async (req, res, next) => {
   }
   try {
     const payload = jwt.verify(jwtToken, process.env.JWT_SECRET);
-    req.user = payload.user;
+    req.body = payload.user_id;
     next();
   } catch (error) {
     console.error(error.message);
     return res.status(403).json("Not Authorize");
   }
+  console.log(req.body)
 };
 
 module.exports = authorization;

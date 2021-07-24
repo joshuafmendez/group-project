@@ -1,56 +1,53 @@
-import axios from 'axios'
-import { useState, useEffect } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
-import { apiURL } from '../util/apiURL'
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useHistory, useParams } from "react-router-dom";
+import { apiURL } from "../util/apiURL";
 
-const API = apiURL()
+const API = apiURL();
 
 const EditProductForm = () => {
-    const history = useHistory()
-    const { id } = useParams()
-    
-    const [product, setProduct] = useState({
-        name: '',
-        price: 0,
-        description: ''
-    })
+  const history = useHistory();
+  const { id } = useParams();
 
+  const [product, setProduct] = useState({
+    name: "",
+    price: 0,
+    description: "",
+  });
+
+  useEffect(() => {
     const fetchProduct = async () => {
-        try {
-        const res = await axios.get(`${API}/products/${id}`)
-           setProduct(res.data.payload)
-        } catch(err){
-            console.log(err);
-        }
+      try {
+        const res = await axios.get(`${API}/products/${id}`);
+        setProduct(res.data.payload);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchProduct();
+  }, [id]);
+
+  const handleChange = (e) => {
+    setProduct({ ...product, [e.target.id]: e.target.value });
+  };
+
+  const updateProd = async (updatedProd, id) => {
+    try {
+      await axios.put(`${API}/products/${id}`, updatedProd);
+      setProduct(updatedProd);
+    } catch (err) {
+      console.log(err);
     }
+  };
 
-    useEffect(() => {
-        fetchProduct()
-    }, [])
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await updateProd(product, id);
+    history.push(`/products/${id}`);
+  };
 
-    const handleChange = (e) => {
-        setProduct({...product, [e.target.id]: e.target.value})
-    }
-
-    const updateProd = async (updatedProd, id) => {
-        try{
-            await axios.put(`${API}/products/${id}`, updatedProd)
-            setProduct(updatedProd)
-        }
-        catch(err){
-            console.log(err);
-        }
-    }
-
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        await updateProd(product, id)
-        history.push(`/products/${id}`)
-    }
-    
-
-    return (
-        <div>
+  return (
+    <div>
       <h1>Edit This Transaction</h1>
       <section className="form">
         <form onSubmit={handleSubmit}>
@@ -76,12 +73,11 @@ const EditProductForm = () => {
             value={product.description}
             onChange={handleChange}
           />
-          <input type="submit" className="submitButton" value='submit' />
-           
+          <input type="submit" className="submitButton" value="submit" />
         </form>
       </section>
     </div>
   );
 };
 
-export default EditProductForm
+export default EditProductForm;

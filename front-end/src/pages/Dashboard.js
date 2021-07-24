@@ -1,4 +1,6 @@
-const Dashboard = ({setAuth}) => {
+import UserList from "../components/admin/UserList";
+
+const Dashboard = ({ setAuth }) => {
   const logout = (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
@@ -6,10 +8,11 @@ const Dashboard = ({setAuth}) => {
   };
   return (
     <div>
-      HELLO!
+      <h1>Admin Dashboard</h1>
       <button className="" onClick={logout}>
         Logout
       </button>
+      <UserList />
     </div>
   );
 };

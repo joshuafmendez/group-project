@@ -6,5 +6,5 @@ INSERT INTO emotions (name, price, description) VALUES
 ('Unrelenting Motivation',7,'Like pre-workout for your aspirations.'),
 ('Portable Comfort Zone',20,'Awkward Antidote.');
 
-INSERT INTO users (user_name, user_email, user_password) VALUES 
-('admin', 'admin@admin.com', 'admin123');
+-- INSERT INTO users (user_name, user_email, user_password) VALUES 
+-- ('admin', 'admin@admin.com', 'admin123');

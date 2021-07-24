@@ -22,6 +22,8 @@ import { apiURL } from "./util/apiURL.js";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Dashboard from "./pages/Dashboard.js";
+import UserDetail from "./components/admin/UserDetail.js";
+import UserEditForm from "./components/admin/UserEditForm.js";
 const API = apiURL();
 
 function App() {
@@ -98,6 +100,12 @@ function App() {
           </Route>
           <Route path="/products/:id/edit">
             <Edit />
+          </Route>
+          <Route exact path="/users/:id">
+            <UserDetail />
+          </Route>
+          <Route path="/users/:id/edit">
+            <UserEditForm />
           </Route>
           <Route path="/*">
             <Four0Four />

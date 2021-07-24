@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import ShoppingCart from "./ShoppingCart";
 
 const ProductListItem = ({ product, setCart }) => {
 
