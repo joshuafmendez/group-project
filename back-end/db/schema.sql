@@ -1,7 +1,3 @@
--- \c meshua
--- DROP DATABASE IF EXISTS group_project;
--- CREATE DATABASE group_project;
-
 DROP TABLE IF EXISTS emotions;
 
 CREATE TABLE emotions (

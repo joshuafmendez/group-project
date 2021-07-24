@@ -14,7 +14,6 @@ const authorization = async (req, res, next) => {
     console.error(error.message);
     return res.status(403).json("Not Authorize");
   }
-  console.log(req.body)
 };
 
 module.exports = authorization;
