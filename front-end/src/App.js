@@ -98,6 +98,7 @@ function App() {
           <Route exact path="/products/:id">
             <Show />
           </Route>
+
           <Route path="/products/:id/edit">
             <Edit />
           </Route>
