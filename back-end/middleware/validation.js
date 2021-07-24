@@ -4,7 +4,8 @@ const validation = (req, res, next) => {
   const emailValidation = (userEmail) => {
     return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userEmail);
   };
-  if (req.originalUrl === "/register") {
+  console.log(req)
+  if (req.originalUrl === "users/register" || req.originalUrl === "/register") {
 
     //convert each element to a boolean
     if (![user_name, user_email, user_password].every(Boolean)) {
