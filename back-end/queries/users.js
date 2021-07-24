@@ -56,11 +56,11 @@ const editUser = async (user_id, user) => {
 
 const createUser = async (user) => {
   try {
-    const { user_name, user_email, user_password } = user;
+    const { name, email, password } = user;
     // checks to see if user exists
     const registerUser = await db.any(
       "SELECT * FROM users WHERE user_email=$1",
-      user_email
+      email
     );
     if (registerUser.length !== 0) {
       return "User Exists";
@@ -69,12 +69,12 @@ const createUser = async (user) => {
     //https://stackoverflow.com/questions/46693430/what-are-salt-rounds-and-how-are-salts-stored-in-bcrypt
     const saltRound = 10;
     const salt = await bcrypt.genSalt(saltRound);
-    const bcryptPassword = await bcrypt.hash(user_password, salt);
+    const bcryptPassword = await bcrypt.hash(password, salt);
     const query =
       "INSERT INTO users (user_name, user_email, user_password) VALUES ($1,$2,$3) RETURNING *";
     const newUser = await db.one(query, [
-      user_name,
-      user_email,
+      name,
+      email,
       bcryptPassword,
     ]);
     const token = jwtGenerator(newUser.user_id);
@@ -85,17 +85,17 @@ const createUser = async (user) => {
 };
 
 const loginUser = async (user) => {
-  const { user_email, user_password } = user;
+  const { email, password } = user;
   try {
     // checks to see if user exists
     const query = "SELECT * FROM users WHERE user_email=$1";
-    const loginUser = await db.one(query, [user_email]);
+    const loginUser = await db.one(query, [email]);
     if (loginUser.length === 0) {
       return "Incorrect password or email";
     }
     //https://www.npmjs.com/package/bcrypt
     const validPassword = await bcrypt.compare(
-      user_password,
+      password,
       loginUser.user_password
     );
     if (!validPassword) {

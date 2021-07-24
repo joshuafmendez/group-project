@@ -83,10 +83,10 @@ users.post("/login", validation, async (req, res) => {
 });
 
 // testing authorization
-users.get("/is-verified", authorization, async (req, res) => {
+users.post("/is-verified", authorization, async (req, res) => {
   try {
     res.json(true);
-  } catch (error) {
+  } catch (err) {
     res.status(404).json({ status: "failure", payload: err });
   }
 });
