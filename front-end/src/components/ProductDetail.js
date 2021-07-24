@@ -43,6 +43,11 @@ const ProductDetail = () => {
       <h3>Price: ${product.price}</h3>
       <Link to="/products"><button>Back</button></Link>
       <button onClick={handleDelete}>Delete</button>
+
+          <Link to={`/products/${id}/edit`}>
+          <button>Edit</button>
+          </Link>
+
     </div>
   );
 };

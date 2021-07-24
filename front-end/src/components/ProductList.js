@@ -8,6 +8,7 @@ const API = apiURL();
 const ProductList = ({ setCart }) => {
   const [products, setProducts] = useState([]);
 
+
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -28,6 +29,16 @@ const ProductList = ({ setCart }) => {
   const sortByDesc = () => {
     setProducts([...products].sort((a, b) => b.price - a.price));
   };
+    return (
+        <div>
+            <section>
+                {products.map(product => {
+                    return <ProductListItem key={product.id} product={product} setCart={setCart}/>
+                })}
+            </section>
+        </div>
+    )
+}
 
   return (
     <div>
