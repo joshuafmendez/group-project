@@ -7,6 +7,7 @@ import {
 
 //Components
 import NavBar from "./components/NavBar.js";
+import ShoppingCart from "./components/ShoppingCart.js";
 
 //Pages
 import Home from "./pages/Home.js";
@@ -95,12 +96,13 @@ function App() {
           <Route exact path="/products/:id">
             <Show />
           </Route>
-          <Route path="/:id/edit">
+          <Route path="/products/:id/edit">
             <Edit />
           </Route>
           <Route path="/*">
             <Four0Four />
           </Route>
+          <ShoppingCart />
         </Switch>
       </Router>
     </div>

@@ -5,7 +5,7 @@ import ProductListItem from './ProductListItem'
 
 const API = apiURL();
 
-const ProductList = () => {
+const ProductList = ({ setCart }) => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -25,7 +25,7 @@ const ProductList = () => {
         <div>
             <section>
                 {products.map(product => {
-                    return <ProductListItem key={product.id} product={product} />
+                    return <ProductListItem key={product.id} product={product} setCart={setCart}/>
                 })}
             </section>
         </div>
