@@ -1,10 +1,3 @@
-DROP TABLE IF EXISTS test;
-
-CREATE TABLE test (
-    id SERIAL PRIMARY KEY, 
-    name TEXT
-);
-
 DROP TABLE if EXISTS emotions;
 
 CREATE TABLE emotions (
@@ -12,4 +5,14 @@ CREATE TABLE emotions (
     name TEXT NOT NULL,
     price NUMERIC NOT NULL,
     description TEXT NOT NULL
+);
+
+DROP TABLE if EXISTS users;
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE users(
+  user_id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_name TEXT NOT NULL,
+  user_email TEXT NOT NULL UNIQUE,
+  user_password TEXT NOT NULL
 );

@@ -11,8 +11,8 @@ import New from "./pages/New.js";
 import Edit from "./pages/Edit.js";
 import Four0Four from "./pages/Four0Four.js";
 
-import { apiURL } from "./util/apiURL.js";
-const API = apiURL();
+// import { apiURL } from "./util/apiURL.js";
+// const API = apiURL();
 
 function App() {
 
@@ -21,22 +21,22 @@ function App() {
       <Router>
         <NavBar />
         <Switch>
-          <Route exact to="/">
+          <Route exact path="/">
             <Home />
           </Route>
-          <Route exact to="/products">
+          <Route exact path="/products">
             <Index />
           </Route>
-          <Route exact to="/:id">
-            <Show />
-          </Route>
-          <Route to="/products/new">
+          <Route path="/products/new">
             <New />
           </Route>
-          <Route to="/:id/edit">
+          <Route exact path="/products/:id">
+            <Show />
+          </Route>
+          <Route path="/:id/edit">
             <Edit />
           </Route>
-          <Route to="/*">
+          <Route path="/*">
             <Four0Four />
           </Route>
         </Switch>
