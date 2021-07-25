@@ -32,15 +32,21 @@ const ProductList = ({ setCart }) => {
 
   return (
     <div>
-      <button class="btn btn-outline-primary mt-2" onClick={sortByAsc}>
+      <button className="btn btn-outline-primary mt-2" onClick={sortByAsc}>
         Ascending
       </button>
-      <button class="btn btn-outline-primary mt-2" onClick={sortByDesc}>
+      <button className="btn btn-outline-primary mt-2" onClick={sortByDesc}>
         Descending
       </button>
       <section>
         {products.map((product) => {
-          return <ProductListItem key={product.id} product={product} setCart={setCart} />;
+          return (
+            <ProductListItem
+              key={product.id}
+              product={product}
+              setCart={setCart}
+            />
+          );
         })}
       </section>
     </div>

@@ -21,7 +21,7 @@ const UserDetail = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const {data}= await axios.get(`${API}/users/user/${id}`);
+        const { data } = await axios.get(`${API}/users/user/${id}`);
         setUser(data.payload);
       } catch (error) {
         console.log(error);

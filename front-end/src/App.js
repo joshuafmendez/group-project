@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./pages/App.css";
 //Components
@@ -51,9 +56,39 @@ function App() {
         <div className="bg-dark text-white">
           <h1 className="mt-3">One Stop Emo Shop </h1>
           <Switch>
-            <Route exact path="/" render={(props) => (!isAuthenticated ? <Home {...props} setAuth={setAuth} /> : <Redirect to="/dashboard" />)} />
-            <Route exact path="/register" render={(props) => (!isAuthenticated ? <RegisterPage {...props} setAuth={setAuth} /> : <Redirect to="/dashboard" />)} />
-            <Route exact path="/dashboard" render={(props) => (isAuthenticated ? <Dashboard {...props} setAuth={setAuth} /> : <Redirect to="/" />)} />
+            <Route
+              exact
+              path="/"
+              render={(props) =>
+                !isAuthenticated ? (
+                  <Home {...props} setAuth={setAuth} />
+                ) : (
+                  <Redirect to="/dashboard" />
+                )
+              }
+            />
+            <Route
+              exact
+              path="/register"
+              render={(props) =>
+                !isAuthenticated ? (
+                  <RegisterPage {...props} setAuth={setAuth} />
+                ) : (
+                  <Redirect to="/dashboard" />
+                )
+              }
+            />
+            <Route
+              exact
+              path="/dashboard"
+              render={(props) =>
+                isAuthenticated ? (
+                  <Dashboard {...props} setAuth={setAuth} />
+                ) : (
+                  <Redirect to="/" />
+                )
+              }
+            />
             <Route exact path="/Register">
               <RegisterPage />
             </Route>

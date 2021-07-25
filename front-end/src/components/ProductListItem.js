@@ -6,12 +6,16 @@ const ProductListItem = ({ product, setCart }) => {
   };
 
   return (
-    <div class="justify-content-lg-around">
-      <ul class="list-group  p-5">
-        <li class="list-group-item-primary">
+    <div className="justify-content-lg-around">
+      <ul className="list-group  p-5">
+        <li className="list-group-item-primary">
           <Link to={`/products/${product.id}`}>{product.name}</Link>
           {`$${product.price}`}
-          <button class="btn btn-outline-success btn-sm" onClick={addToCart}>
+          {/* <img src={product.image} alt={product.name}/> */}
+          <button
+            className="btn btn-outline-success btn-sm"
+            onClick={addToCart}
+          >
             Add To Cart
           </button>
         </li>

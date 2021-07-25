@@ -39,16 +39,30 @@ const NewProductForm = () => {
         <div className="form-group d-flex flex-column p-3">
           <div className=" form-group-primary input-group-prepend" type="text">
             <label htmlFor="name">Name: </label>
-            <input id="name" value={product.name} required onChange={handleChange} />
+            <input
+              id="name"
+              value={product.name}
+              required
+              onChange={handleChange}
+            />
           </div>
 
           <div className="form-group input-group-prepend" type="number">
             <label htmlFor="price">Price: </label>
-            <input id="price" value={product.price} required onChange={handleChange} />
+            <input
+              id="price"
+              value={product.price}
+              required
+              onChange={handleChange}
+            />
           </div>
           <div className="input-group-prepend" type="text">
             <label htmlFor="description">Description: </label>
-            <input id="description" value={product.description} onChange={handleChange} />
+            <input
+              id="description"
+              value={product.description}
+              onChange={handleChange}
+            />
           </div>
           <div className="row mt-6">
             <div className="col-sm">

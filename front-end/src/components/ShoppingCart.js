@@ -12,7 +12,10 @@ const ShoppingCart = ({ cart, setCart }) => {
         {cart.map((prod) => (
           <li key={prod.id}>
             {prod.name} ${prod.price}
-            <button class="btn btn-outline-primary" onClick={() => removeFromCart(prod.id)}>
+            <button
+              className="btn btn-outline-primary"
+              onClick={() => removeFromCart(prod.id)}
+            >
               Remove From Cart
             </button>
           </li>

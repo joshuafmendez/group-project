@@ -1,9 +1,9 @@
 const { default: Register } = require("../components/Register");
 
-const RegisterPage = ({setAuth}) => {
+const RegisterPage = ({ setAuth }) => {
   return (
     <div>
-      <Register setAuth={setAuth}/>
+      <Register setAuth={setAuth} />
     </div>
   );
 };

@@ -54,7 +54,12 @@ const UserEditForm = () => {
       <section className="form">
         <form onSubmit={handleSubmit}>
           <label htmlFor="user_name">Username:</label>
-          <input id="user_name" value={user_name} required onChange={handleChange} />
+          <input
+            id="user_name"
+            value={user_name}
+            required
+            onChange={handleChange}
+          />
           <label htmlFor="user_email">Email:</label>
           <input
             id="user_email"

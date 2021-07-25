@@ -10,7 +10,12 @@ const Index = () => {
     <div>
       <h1>Emo Products!</h1>
       <ProductList setCart={setCart} />
-      <button class="btn btn-primary" type="button" value="Show Shopping Cart" onClick={() => setIsCartVisible((prevState) => !prevState)}>
+      <button
+        className="btn btn-primary"
+        type="button"
+        value="Show Shopping Cart"
+        onClick={() => setIsCartVisible((prevState) => !prevState)}
+      >
         Shopping Cart
       </button>
       {isCartVisible && <ShoppingCart cart={cart} setCart={setCart} />}
