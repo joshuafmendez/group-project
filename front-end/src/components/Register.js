@@ -18,10 +18,7 @@ const Register = ({ setAuth }) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const body = { email, password, name };
-    console.log(body)
+  const registerUser = async () => {
     try {
       const { data } = await axios.post(`${API}/users/register`, body);
       if (data.payload.token) {
@@ -33,6 +30,11 @@ const Register = ({ setAuth }) => {
     } catch (error) {
       console.error(error.message);
     }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    registerUser();
   };
 
   return (
