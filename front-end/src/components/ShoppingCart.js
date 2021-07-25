@@ -1,5 +1,4 @@
 const ShoppingCart = ({ cart, setCart }) => {
-
   const removeFromCart = (id) => {
     const filterCart = cart.filter((prod) => {
       return prod.id !== id;
@@ -13,7 +12,7 @@ const ShoppingCart = ({ cart, setCart }) => {
         {cart.map((prod) => (
           <li key={prod.id}>
             {prod.name} ${prod.price}
-            <button onClick={() => removeFromCart(prod.id)}>
+            <button class="btn btn-outline-primary" onClick={() => removeFromCart(prod.id)}>
               Remove From Cart
             </button>
           </li>

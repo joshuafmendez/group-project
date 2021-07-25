@@ -12,6 +12,7 @@ const ProductList = ({ setCart }) => {
     const getProducts = async () => {
       try {
         const res = await axios.get(`${API}/products`);
+
         setProducts(res.data.payload);
       } catch (error) {
         console.log(error);
@@ -31,17 +32,15 @@ const ProductList = ({ setCart }) => {
 
   return (
     <div>
-      <button onClick={sortByAsc}>Ascending</button>
-      <button onClick={sortByDesc}>Descending</button>
+      <button class="btn btn-outline-primary mt-2" onClick={sortByAsc}>
+        Ascending
+      </button>
+      <button class="btn btn-outline-primary mt-2" onClick={sortByDesc}>
+        Descending
+      </button>
       <section>
         {products.map((product) => {
-          return (
-            <ProductListItem
-              key={product.id}
-              product={product}
-              setCart={setCart}
-            />
-          );
+          return <ProductListItem key={product.id} product={product} setCart={setCart} />;
         })}
       </section>
     </div>

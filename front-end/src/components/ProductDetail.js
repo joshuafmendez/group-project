@@ -31,8 +31,8 @@ const ProductDetail = () => {
   }, [id]);
 
   const handleDelete = async () => {
-      await deleteProduct();
-      history.push("/products");
+    await deleteProduct();
+    history.push("/products");
   };
 
   return (
@@ -41,13 +41,14 @@ const ProductDetail = () => {
       <h2>Product: {product.name}</h2>
       <h3>Description: {product.description}</h3>
       <h3>Price: ${product.price}</h3>
-      <Link to="/products"><button>Back</button></Link>
+      <Link to="/products">
+        <button>Back</button>
+      </Link>
       <button onClick={handleDelete}>Delete</button>
 
-          <Link to={`/products/${id}/edit`}>
-          <button>Edit</button>
-          </Link>
-
+      <Link to={`/products/${id}/edit`}>
+        <button>Edit</button>
+      </Link>
     </div>
   );
 };

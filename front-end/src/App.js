@@ -1,10 +1,6 @@
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
-
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./pages/App.css";
 //Components
 import NavBar from "./components/NavBar.js";
 import ShoppingCart from "./components/ShoppingCart.js";
@@ -49,70 +45,43 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="App">
       <Router>
         <NavBar />
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={(props) =>
-              !isAuthenticated ? (
-                <Home {...props} setAuth={setAuth} />
-              ) : (
-                <Redirect to="/dashboard" />
-              )
-            }
-          />
-          <Route
-            exact
-            path="/register"
-            render={(props) =>
-              !isAuthenticated ? (
-                <RegisterPage {...props} setAuth={setAuth} />
-              ) : (
-                <Redirect to="/dashboard" />
-              )
-            }
-          />
-          <Route
-            exact
-            path="/dashboard"
-            render={(props) =>
-              isAuthenticated ? (
-                <Dashboard {...props} setAuth={setAuth} />
-              ) : (
-                <Redirect to="/" />
-              )
-            }
-          />
-          <Route exact path="/Register">
-            <RegisterPage />
-          </Route>
-          <Route exact path="/products">
-            <Index />
-          </Route>
-          <Route path="/products/new">
-            <New />
-          </Route>
-          <Route exact path="/products/:id">
-            <Show />
-          </Route>
+        <div className="bg-dark text-white">
+          <h1 className="mt-3">One Stop Emo Shop </h1>
+          <Switch>
+            <Route exact path="/" render={(props) => (!isAuthenticated ? <Home {...props} setAuth={setAuth} /> : <Redirect to="/dashboard" />)} />
+            <Route exact path="/register" render={(props) => (!isAuthenticated ? <RegisterPage {...props} setAuth={setAuth} /> : <Redirect to="/dashboard" />)} />
+            <Route exact path="/dashboard" render={(props) => (isAuthenticated ? <Dashboard {...props} setAuth={setAuth} /> : <Redirect to="/" />)} />
+            <Route exact path="/Register">
+              <RegisterPage />
+            </Route>
+            <Route exact path="/products">
+              <Index />
+            </Route>
+            <Route path="/products/new">
+              <New />
+            </Route>
+            <Route exact path="/products/:id">
+              <Show />
+            </Route>
 
-          <Route path="/products/:id/edit">
-            <Edit />
-          </Route>
-          <Route exact path="/users/:id">
-            <UserDetail />
-          </Route>
-          <Route path="/users/:id/edit">
-            <UserEditForm />
-          </Route>
-          <Route path="/*">
-            <Four0Four />
-          </Route>
-          <ShoppingCart />
-        </Switch>
+            <Route path="/products/:id/edit">
+              <Edit />
+            </Route>
+            <Route exact path="/users/:id">
+              <UserDetail />
+            </Route>
+            <Route path="/users/:id/edit">
+              <UserEditForm />
+            </Route>
+            <Route path="/*">
+              <Four0Four />
+            </Route>
+            <ShoppingCart />
+          </Switch>
+        </div>
       </Router>
     </div>
   );

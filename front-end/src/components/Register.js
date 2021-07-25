@@ -19,6 +19,7 @@ const Register = ({ setAuth }) => {
   };
 
   const registerUser = async () => {
+    const body = { email, password, name };
     try {
       const { data } = await axios.post(`${API}/users/register`, body);
       if (data.payload.token) {
@@ -41,30 +42,9 @@ const Register = ({ setAuth }) => {
     <>
       <h1 className="">Register</h1>
       <form onSubmit={handleSubmit}>
-        <input
-          className=""
-          type="email"
-          name="email"
-          placeholder="email"
-          value={email}
-          onChange={(e) => handleChange(e)}
-        />
-        <input
-          className=""
-          type="password"
-          name="password"
-          placeholder="password"
-          value={password}
-          onChange={(e) => handleChange(e)}
-        />
-        <input
-          className=""
-          type="test"
-          name="name"
-          placeholder="name"
-          value={name}
-          onChange={(e) => handleChange(e)}
-        />
+        <input className="" type="email" name="email" placeholder="email" value={email} onChange={(e) => handleChange(e)} />
+        <input className="" type="password" name="password" placeholder="password" value={password} onChange={(e) => handleChange(e)} />
+        <input className="" type="test" name="name" placeholder="name" value={name} onChange={(e) => handleChange(e)} />
 
         <button className="">Submit</button>
       </form>
