@@ -102,6 +102,7 @@ const loginUser = async (user) => {
       return res.status(401).json("Incorrect password or email");
     }
     const token = jwtGenerator(loginUser.user_id);
+    console.log(token)
     return { token };
   } catch (error) {
     return error;
