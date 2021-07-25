@@ -20,8 +20,9 @@ const Register = ({ setAuth }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const body = { email, password, name };
+    console.log(body)
     try {
-      const body = { email, password, name };
       const { data } = await axios.post(`${API}/users/register`, body);
       if (data.payload.token) {
         localStorage.setItem("token", data.payload.token);
