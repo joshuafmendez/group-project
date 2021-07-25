@@ -4,6 +4,7 @@ CREATE TABLE emotions (
     id SERIAL PRIMARY KEY, 
     name TEXT NOT NULL,
     price NUMERIC NOT NULL,
+    image BYTEA,
     description TEXT NOT NULL
 );
 
