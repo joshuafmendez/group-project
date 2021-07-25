@@ -31,19 +31,23 @@ const ProductDetail = () => {
   }, [id]);
 
   const handleDelete = async () => {
-      await deleteProduct();
-      history.push("/products");
+    await deleteProduct();
+    history.push("/products");
   };
 
   return (
-    <div>
-      <h1>Product Details</h1>
-      <h2>Product: {product.name}</h2>
-      <h3>Description: {product.description}</h3>
-      <h3>Price: ${product.price}</h3>
-      <Link to="/products"><button>Back</button></Link>
-      <button onClick={handleDelete}>Delete</button>
-    </div>
+    <tr>
+      <td>Product Details</td>
+      <td>Product: {product.name}</td>
+      <td>Description: {product.description}</td>
+      <td>Price: ${product.price}</td>
+      <Link to="/products">
+        <button>Back</button>
+      </Link>
+      <button className="btn btn-outline-danger" onClick={handleDelete}>
+        Delete
+      </button>
+    </tr>
   );
 };
 
