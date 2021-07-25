@@ -18,8 +18,7 @@ const Register = ({ setAuth }) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const registerUser = async () => {
     try {
       const body = { email, password, name };
       const { data } = await axios.post(`${API}/users/register`, body);
@@ -32,6 +31,11 @@ const Register = ({ setAuth }) => {
     } catch (error) {
       console.error(error.message);
     }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    registerUser();
   };
 
   return (
