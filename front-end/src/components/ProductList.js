@@ -5,13 +5,14 @@ import ProductListItem from "./ProductListItem";
 
 const API = apiURL();
 
-const ProductList = () => {
+const ProductList = ({ setCart }) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const getProducts = async () => {
       try {
         const res = await axios.get(`${API}/products`);
+
         setProducts(res.data.payload);
       } catch (error) {
         console.log(error);
@@ -20,22 +21,27 @@ const ProductList = () => {
     getProducts();
   }, []);
 
+  const sortByAsc = () => {
+    const sortedProducts = [...products].sort((a, b) => a.price - b.price);
+    setProducts(sortedProducts);
+  };
+
+  const sortByDesc = () => {
+    setProducts([...products].sort((a, b) => b.price - a.price));
+  };
+
   return (
     <div>
+      <button class="btn btn-outline-primary mt-2" onClick={sortByAsc}>
+        Ascending
+      </button>
+      <button class="btn btn-outline-primary mt-2" onClick={sortByDesc}>
+        Descending
+      </button>
       <section>
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">Product</th>
-              <th scope="col">Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => {
-              return <ProductListItem key={product.id} product={product} />;
-            })}
-          </tbody>
-        </table>
+        {products.map((product) => {
+          return <ProductListItem key={product.id} product={product} setCart={setCart} />;
+        })}
       </section>
     </div>
   );

@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Four0Four = () => {
-    return (
-        <div>
-            <h1>Oops! Page Not Found!</h1>
-        </div>
-    )
-}
+  return <div class="text-warning">Oops! Page Not Found!</div>;
+};
 
-export default Four0Four
+export default Four0Four;

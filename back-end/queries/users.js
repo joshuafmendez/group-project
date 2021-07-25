@@ -1,5 +1,6 @@
 const db = require("../db/dbConfig.js");
 const bcrypt = require("bcrypt");
+const jwtGenerator = require("../utils/jwtGenerator.js");
 
 const getAllUsers = async () => {
   try {
@@ -21,25 +22,6 @@ const getUser = async (id) => {
   }
 };
 
-const createUser = async (user) => {
-  const { user_name, user_email, user_password } = user;
-  try {
-    const saltRound = 10;
-    const salt = await bcrypt.genSalt(saltRound);
-    const bcryptPassword = await bcrypt.hash(user_password, salt);
-    const query =
-      "INSERT INTO users (user_name, user_email, user_password) VALUES ($1,$2,$3) RETURNING *";
-    const newUser = await db.one(query, [
-      user_name,
-      user_email,
-      bcryptPassword,
-    ]);
-    return newUser;
-  } catch (error) {
-    return error;
-  }
-};
-
 const deleteUser = async (id) => {
   try {
     const query = "DELETE FROM users WHERE user_id=$1 RETURNING *";
@@ -52,6 +34,8 @@ const deleteUser = async (id) => {
 
 const editUser = async (user_id, user) => {
   const { user_name, user_email, user_password } = user;
+  //https://www.npmjs.com/package/bcrypt
+  //https://stackoverflow.com/questions/46693430/what-are-salt-rounds-and-how-are-salts-stored-in-bcrypt
   const saltRound = 10;
   const salt = await bcrypt.genSalt(saltRound);
   const bcryptPassword = await bcrypt.hash(user_password, salt);
@@ -70,14 +54,56 @@ const editUser = async (user_id, user) => {
   }
 };
 
-// still working on
-const loginUser = async (user) => {
-  const { user_email } = user;
+const createUser = async (user) => {
   try {
+    const { name, email, password } = user;
+    // checks to see if user exists
+    const registerUser = await db.any(
+      "SELECT * FROM users WHERE user_email=$1",
+      email
+    );
+    if (registerUser.length !== 0) {
+      return "User Exists";
+    }
+    //https://www.npmjs.com/package/bcrypt
+    //https://stackoverflow.com/questions/46693430/what-are-salt-rounds-and-how-are-salts-stored-in-bcrypt
+    const saltRound = 10;
+    const salt = await bcrypt.genSalt(saltRound);
+    const bcryptPassword = await bcrypt.hash(password, salt);
+    const query =
+      "INSERT INTO users (user_name, user_email, user_password) VALUES ($1,$2,$3) RETURNING *";
+    const newUser = await db.one(query, [
+      name,
+      email,
+      bcryptPassword,
+    ]);
+    const token = jwtGenerator(newUser.user_id);
+    return { token };
+  } catch (error) {
+    return error;
+  }
+};
+
+const loginUser = async (user) => {
+  const { email, password } = user;
+  try {
+    // checks to see if user exists
     const query = "SELECT * FROM users WHERE user_email=$1";
-    const newUser = await db.one(query, [user_email]);
-    console.log(newUser);
-    return newUser;
+    const loginUser = await db.one(query, [email]);
+    if (loginUser.length === 0) {
+      return "Incorrect password or email";
+    }
+    //https://www.npmjs.com/package/bcrypt
+    const validPassword = await bcrypt.compare(
+      password,
+      loginUser.user_password
+    );
+    if (!validPassword) {
+      return res.status(401).json("Incorrect password or email");
+    }
+    const token = jwtGenerator(loginUser.user_id);
+    console.log(token)
+    return { token };
   } catch (error) {
     return error;
   }

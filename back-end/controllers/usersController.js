@@ -1,4 +1,6 @@
 const users = require("express").Router();
+const validation = require("../middleware/validation");
+const authorization = require("../middleware/authorization");
 const {
   getAllUsers,
   getUser,
@@ -19,7 +21,7 @@ users.get("/", async (req, res) => {
 });
 
 // get user by id
-users.get("/:id", async (req, res) => {
+users.get("/user/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const user = await getUser(id);
@@ -33,34 +35,8 @@ users.get("/:id", async (req, res) => {
   }
 });
 
-// register a user
-users.post("/register", async (req, res) => {
-  try {
-    const user = await createUser(req.body);
-    // const token = jwtGenerator(user.user_id);
-    res.json({ status: "success", payload: user });
-  } catch (err) {
-    res.status(404).json({ status: "failure", payload: err });
-  }
-});
-
-// login a user ---- still working on
-users.post("/login", async (req, res) => {
-  try {
-    const user = await loginUser(req.body);
-    console.log(user);
-    if (user) {
-      res.json({ status: "success", payload: user });
-    } else {
-      res.status(404).json({ status: "failure", payload: err });
-    }
-  } catch (err) {
-    res.status(404).json({ status: "failure", payload: err });
-  }
-});
-
 // delete user
-users.delete("/:id", async (req, res) => {
+users.delete("/user/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const deletedUser = await deleteUser(id);
@@ -71,12 +47,45 @@ users.delete("/:id", async (req, res) => {
 });
 
 // edit user
-users.put("/:id", async (req, res) => {
+users.put("/user/:id", async (req, res) => {
   const { body, params } = req;
   const { id } = params;
   try {
     const editedUser = await editUser(id, body);
     res.json({ status: "success", payload: editedUser });
+  } catch (err) {
+    res.status(404).json({ status: "failure", payload: err });
+  }
+});
+
+// register a user
+users.post("/register", validation, async (req, res) => {
+  try {
+    const user = await createUser(req.body);
+    if (user !== "User Exists") {
+      res.json({ status: "success", payload: user });
+    } else {
+      res.status(404).json({ status: "failure", payload: user });
+    }
+  } catch (err) {
+    res.status(404).json({ status: "failure", payload: err });
+  }
+});
+
+// login a user
+users.post("/login", validation, async (req, res) => {
+  try {
+    const user = await loginUser(req.body);
+    res.json({ status: "success", payload: user });
+  } catch (err) {
+    res.status(404).json({ status: "failure", payload: err });
+  }
+});
+
+// testing authorization
+users.post("/is-verified", authorization, async (req, res) => {
+  try {
+    res.json(true);
   } catch (err) {
     res.status(404).json({ status: "failure", payload: err });
   }

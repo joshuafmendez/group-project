@@ -36,20 +36,21 @@ const NewProductForm = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div className="row">
-          <div className="col-sm col-lg-2">
-            <label htmlFor="name">Name:</label>
+        <div className="form-group d-flex flex-column p-3">
+          <div className=" form-group-primary input-group-prepend" type="text">
+            <label htmlFor="name">Name: </label>
             <input id="name" value={product.name} required onChange={handleChange} />
           </div>
-          <div className="col-md col-lg-2">
-            <label htmlFor="price">Price:</label>
+
+          <div className="form-group input-group-prepend" type="number">
+            <label htmlFor="price">Price: </label>
             <input id="price" value={product.price} required onChange={handleChange} />
           </div>
-          <div className="col-md col-lg-2">
-            <label htmlFor="description">Description:</label>
+          <div className="input-group-prepend" type="text">
+            <label htmlFor="description">Description: </label>
             <input id="description" value={product.description} onChange={handleChange} />
           </div>
-          <div className="row mt-3">
+          <div className="row mt-6">
             <div className="col-sm">
               <input type="submit" className="btn btn-primary" />
             </div>
