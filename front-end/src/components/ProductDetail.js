@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useHistory, useParams, Link } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { apiURL } from "../util/apiURL";
 const API = apiURL();
@@ -25,13 +27,15 @@ const ProductDetail = () => {
         setProduct(res.data.payload);
       } catch (error) {
         console.log(error);
+        history.push("/*");
       }
     };
     getProduct();
-  }, [id]);
+  }, [id, history]);
 
   const handleDelete = async () => {
     await deleteProduct();
+    toast.error(`You have successfully removed ${product.name}`);
     history.push("/products");
   };
 

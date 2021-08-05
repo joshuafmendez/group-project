@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { apiURL } from "../util/apiURL";
 import ProductListItem from "./ProductListItem";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const API = apiURL();
 
@@ -39,15 +41,12 @@ const ProductList = ({ setCart }) => {
         Descending
       </button>
       <section>
-        {products.map((product) => {
+        {products.map((product, i) => {
           return (
-            <ProductListItem
-              key={product.id}
-              product={product}
-              setCart={setCart}
-            />
+            <ProductListItem key={i} product={product} setCart={setCart} />
           );
         })}
+        <ToastContainer />
       </section>
     </div>
   );

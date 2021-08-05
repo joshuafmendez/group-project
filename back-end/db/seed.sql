@@ -1,5 +1,5 @@
 INSERT INTO emotions (name, price, image, description) VALUES 
-('Self-Confidence',10,bytea('/back-end/media/m1.webp'),'Are you tired of doubting yourself?'),
+('Self-Confidence',10,bytea('./back-end/media/m1.webp'),'Are you tired of doubting yourself?'),
 ('Peace of Mind',1,bytea('/back-end/media/m2.webp'),'Stressed beyond your wildest dreams?'),
 ('Sense of Humor',35,bytea('/back-end/media/m3.webp'),'Guaranteed to increase your likability.'),
 ('Brutal Honesty',3,bytea('/back-end/media/m4.webp'),'The reality check you need'),
