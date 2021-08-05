@@ -5,11 +5,10 @@ import ShoppingCart from "../components/ShoppingCart";
 const Index = () => {
   const [cart, setCart] = useState([]);
   const [isCartVisible, setIsCartVisible] = useState(false);
-
+  // console.log(cart)
   return (
     <div>
       <h1>Emo Products!</h1>
-      <ProductList setCart={setCart} />
       <button
         className="btn btn-primary"
         type="button"
@@ -19,6 +18,7 @@ const Index = () => {
         Shopping Cart
       </button>
       {isCartVisible && <ShoppingCart cart={cart} setCart={setCart} />}
+      <ProductList setCart={setCart} />
     </div>
   );
 };

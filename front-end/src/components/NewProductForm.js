@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import { apiURL } from "../util/apiURL";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const API = apiURL();
 
@@ -26,9 +28,10 @@ const NewProductForm = () => {
     setProduct({ ...product, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    addProduct(product);
+    await addProduct(product);
+    toast.success(`You have successfully added ${product.name}`);
     history.push("/products");
   };
   <h1>Add A New Emotion!</h1>;

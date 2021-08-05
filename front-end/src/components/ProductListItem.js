@@ -11,7 +11,7 @@ const ProductListItem = ({ product, setCart }) => {
         <li className="list-group-item-primary">
           <Link to={`/products/${product.id}`}>{product.name}</Link>
           {`$${product.price}`}
-          {/* <img src={product.image} alt={product.name}/> */}
+          <img src={product.image} alt={product.name}/>
           <button
             className="btn btn-outline-success btn-sm"
             onClick={addToCart}

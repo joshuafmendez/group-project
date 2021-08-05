@@ -1,7 +1,7 @@
 const ShoppingCart = ({ cart, setCart }) => {
-  const removeFromCart = (id) => {
-    const filterCart = cart.filter((prod) => {
-      return prod.id !== id;
+  const removeFromCart = (i) => {
+    const filterCart = cart.filter((prod, index) => {
+      return i !== index
     });
     setCart(filterCart);
   };
@@ -9,12 +9,12 @@ const ShoppingCart = ({ cart, setCart }) => {
   return (
     <div>
       <ul>
-        {cart.map((prod) => (
-          <li key={prod.id}>
+        {cart.map((prod, i) => (
+          <li key={i} id={i}>
             {prod.name} ${prod.price}
             <button
               className="btn btn-outline-primary"
-              onClick={() => removeFromCart(prod.id)}
+              onClick={() => removeFromCart(i)}
             >
               Remove From Cart
             </button>
