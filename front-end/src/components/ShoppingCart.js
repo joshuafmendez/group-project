@@ -1,7 +1,7 @@
 const ShoppingCart = ({ cart, setCart }) => {
   const removeFromCart = (i) => {
-    const filterCart = cart.filter((prod, index) => {
-      return i !== index
+    const filterCart = cart.filter((_, index) => {
+      return i !== index;
     });
     setCart(filterCart);
   };
